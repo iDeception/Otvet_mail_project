@@ -1,4 +1,5 @@
 import { browserHelper } from "../utils/browserHelper.js";
+import switchToLoginFrame from "../utils/switchToFrame.js";
 
 const selectors = {
   LOGIN_BUTTON: '//button[@class="ph-login svelte-1hiqrvn"]',
@@ -13,7 +14,8 @@ async function login(login, password) {
   await browser.maximizeWindow();
   await browser.url("https://otvet.mail.ru/");
   await browserHelper(selectors.LOGIN_BUTTON).clickElement();
-  await browserHelper(selectors.EMAIL_FIELD, 20000).setValue(login);
+  await switchToLoginFrame.switchFrame();
+  await browserHelper(selectors.EMAIL_FIELD).setValue(login);
   await browserHelper(selectors.ENTER_PASSWORD_BUTTON).clickElement();
   await browserHelper(selectors.PASSWORD_FIELD).setValue(password);
   await browserHelper(selectors.SIGN_IN_BUTTON).clickElement();
