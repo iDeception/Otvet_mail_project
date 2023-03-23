@@ -21,5 +21,9 @@ export function browserHelper(selector, timeout = default_timeout) {
     return element.getText();
   }
 
-  return { findElement, clickElement, setValue, getElementText };
+  async function selectCategory() {
+    await $(selector).selectByVisibleText("Авто, Мото");
+  }
+
+  return { findElement, clickElement, setValue, getElementText, selectCategory };
 }
