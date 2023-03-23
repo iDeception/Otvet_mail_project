@@ -1,4 +1,6 @@
 import { browserHelper } from "../utils/browserHelper.js";
+import { cookCategorySelector } from "../utils/cookCategorySelector.js";
+import { cookSubcategorySelector } from "../utils/cookSubcategorySelector.js";
 
 const selectors = {
   ASK_QUESTION_BUTTON: '//div[text()="Задать вопрос"]',
@@ -23,12 +25,14 @@ async function enterQuestionText(text) {
 
 async function selectQuestionCategory(category) {
   await browserHelper(selectors.QUESTION_CATEGORY_DROPDOWN).clickElement();
-  await browserHelper(`//*[text()="${category}" and @class="u2mHx"]`).clickElement();
+  const categorySelector = cookCategorySelector(category);
+  await browserHelper(categorySelector).clickElement();
 }
 
 async function selectQuestionSubcategory(subcategory) {
   await browserHelper(selectors.QUESTION_SUBCATEGORY_DROPDOWN).clickElement();
-  await browserHelper(`//*[text()="${subcategory}" and @class="u2mHx"]`).clickElement();
+  const subcategorySelector = cookSubcategorySelector(subcategory);
+  await browserHelper(subcategorySelector).clickElement();
 }
 
 async function clickPublishQuestionButton() {

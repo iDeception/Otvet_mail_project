@@ -1,5 +1,6 @@
 import { expect } from "chai";
 import loginDialog from "../../pageobjects/loginDialog.js";
+import sideBar from "../../pageobjects/sideBar.js";
 import creds from "../../testData/creds.js";
 import cookiesDialog from "../../pageobjects/cookiesDialog.js";
 import askQuestion from "../../pageobjects/askQuestion.js";
@@ -20,5 +21,10 @@ questions.forEach((question) => {
     });
 
     it("Shoud verify if question was published", async () => {});
+
+    after(async () => {
+      await sideBar.openSideBar();
+      await sideBar.logOut();
+    });
   });
 });
